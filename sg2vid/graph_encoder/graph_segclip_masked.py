@@ -61,7 +61,7 @@ def random_object_masked_image(batch, ignore_index):
         random_class = torch.randint(0, len(non_zero_indices), (1,)).item()
         random_class = non_zero_indices[random_class]
 
-        # Dilate the mask (Dilate primary knive even more)
+        # Dilate the mask
         mask = batch["segmentation"][i][:,random_class,:,:]
         mask = F.conv2d(mask.unsqueeze(1), conv_kernel, padding=padding)
         mask = (mask > 0).float().squeeze(1)
