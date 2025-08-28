@@ -1,0 +1,51 @@
+model:
+  base_learning_rate: 4.5e-6
+  target: sg2vid.taming.taming.models.vqgan.VQSegmentationModel
+  params:
+    embed_dim: 1
+    n_embed: 8192
+    image_key: segmentation
+    n_labels: 13
+    palatte: cholec80
+    ddconfig:
+      double_z: false
+      z_channels: 1
+      resolution: 128
+      in_channels: 13
+      out_ch: 13
+      ch: 128
+      ch_mult:
+      - 1
+      - 2
+      - 2
+      - 4
+      num_res_blocks: 2
+      attn_resolutions:
+      - 16
+      dropout: 0.0
+    lossconfig:
+      target: sg2vid.taming.taming.modules.losses.segmentation.BCELossWithQuant
+      params:
+        codebook_weight: 1.0
+
+data:
+  target: main.DataModuleFromConfig
+  params:
+    batch_size: 16
+    num_workers: 16
+    train:
+      target: sg2vid.taming.taming.data.surgicaldataset.Cholec80Train
+      params:
+        size: 128
+        num_label: 13
+        txt_file: /path/to/dataset/Cholec-80/split/cholec80_train.txt
+        data_root: /path/to/dataset/Cholec-80
+        augment: True
+    validation:
+      target: sg2vid.taming.taming.data.surgicaldataset.Cholec80Validation
+      params:
+        size: 128
+        num_label: 13
+        txt_file: /path/to/dataset/Cholec-80/split/cholec80_val.txt
+        data_root: /path/to/dataset/Cholec-80
+        augment: False

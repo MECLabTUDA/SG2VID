@@ -1,0 +1,1 @@
+from sg2vid.ldm.modules.losses.contperceptual import LPIPSWithDiscriminator
