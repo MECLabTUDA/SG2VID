@@ -100,11 +100,13 @@ python train.py --config configs/training/training_unconditional_<dataset_name>.
 ## 📜 Citations
 If you are using SG2VID for your paper, please cite the following paper:
 ```
-@article{sivakumar2025sg2vid,
-  title={SG2VID: Scene Graphs Enable Fine-Grained Control for Video Synthesis},
+@inproceedings{sivakumar2025sg2vid,
+  title={Sg2vid: Scene graphs enable fine-grained control for video synthesis},
   author={Sivakumar, Ssharvien Kumar and Frisch, Yannik and Ghazaei, Ghazal and Mukhopadhyay, Anirban},
-  journal={arXiv preprint arXiv:2506.03082},
-  year={2025}
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={511--521},
+  year={2025},
+  organization={Springer}
 }
 ```
 
